@@ -13,8 +13,22 @@ int main(void){
     // char letra = '0';
     // int intLetra = letra;
 
-    int numero = 99;
-    char numeroChar = numero;
+    // int numero = 320;
+    // char numeroChar = numero;
 
-    cout << numeroChar << endl;
+    // float floatchar = 97.14;
+    // char charFloat = floatchar;
+
+    // int valorBool = 99;
+    // bool valorInt = valorBool;
+
+    int d1, d2, q, r;
+    float x;
+
+    d1 = 5;
+    d2= 2;
+    x = (float)d1/d2;
+
+
+    cout << x << endl;
 }
