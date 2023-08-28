@@ -10,8 +10,11 @@ int main(void){
     // int intPi = pi;
     // float floatPi = intPi;
 
-    char letra = 'a';
-    int intLetra = letra;
+    // char letra = '0';
+    // int intLetra = letra;
 
-    cout << intLetra << endl;
+    int numero = 99;
+    char numeroChar = numero;
+
+    cout << numeroChar << endl;
 }
