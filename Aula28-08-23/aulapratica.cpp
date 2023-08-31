@@ -25,7 +25,7 @@ int main(void){
     int d1, d2, q, r;
     float x;
 
-    d1 = 5;
+    d1 = 30;
     d2= 2;
     x = (float)d1/d2;
 
