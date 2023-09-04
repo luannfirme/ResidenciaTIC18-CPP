@@ -1,24 +1,35 @@
 #include <iostream>
-#include <math.h>
+#include <vector>
+#include <string>
 
 using namespace std;
 
 int main (void){
 
-    int c, temperatura, maiortemperatura = 0;
+float nota1[5];
+float nota2[5];
+string aluno;
+vector<string> alunos;
+int x = 0;
+int a;
 
+for(int i = 0; i <5; i++){
+    cout << "Informe o nome de um aluno: ";
+    cin >> aluno;
 
-    for (c = 0; c < 5; c++)
-    {
-        cout << "Informe a temperatura do mes "<< c + 1 << ": ";
-        cin >> temperatura;
+    alunos.push_back(aluno);
 
-        if(temperatura > maiortemperatura)
-            maiortemperatura = temperatura;
+    cout << "Informe a primeira nota: ";
+    cin >> nota1[i];
 
-    }
+    cout << "Informe a segunda nota: ";
+    cin >> nota2[i];
+}
 
-    cout << "A maior temperatura foi: "<< maiortemperatura << endl;
+cout << "Posicao do aluno que voce deseja localizar: ";
+cin >> a;
 
-    return 0;
+cout << "Aluno: " << alunos.at(a) << endl;
+
+return 0;
 }

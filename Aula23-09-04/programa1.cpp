@@ -1,23 +1,32 @@
 #include <iostream>
+#include <vector>
+#include <string>
 
 using namespace std;
 
 int main (void){
-    int a, b, c;
 
-    cout << "Digite um numero inteiro: ";
-    cin >> a;
+float nota1[5];
+float nota2[5];
+string aluno[5];
 
-    cout << "Digite outro numero inteiro: ";
-    cin >> b;
+for(int i = 0; i <3; i++){
+    cout << "Informe o nome de um aluno (6): ";
+    cin >> aluno[i];
 
-    if (a >= b)
-        c = a - b;
+    cout << "Informe a primeira nota: ";
+    cin >> nota1[i];
 
-    else
-        c =  b - a;
+    cout << "Informe a segunda nota: ";
+    cin >> nota2[i];
+}
 
-    cout << "O calculo deu: "<< c << endl;
 
-    return 0;
+for(int x = 0; x < 3; x++ ){
+    float media = (nota1[x] + nota2[x]) / 2;
+
+    cout << "Aluno " << aluno[x] << " Primeira Nota: " << nota1[x] << " Segunda Nota: " << nota2[x] << " Media: " << media << endl;
+}
+
+return 0;
 }

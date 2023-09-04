@@ -1,33 +1,35 @@
 #include <iostream>
-#include <math.h>
+#include <vector>
+#include <string>
 
 using namespace std;
 
 int main (void){
-    float a, b, c, delta, x1, x2;
 
-    cout << "Digite o coeficiente a: ";
-    cin >> a;
+float nota1[5];
+float nota2[5];
+string aluno;
+vector<string> alunos;
 
-    cout << "Digite o coeficiente b: ";
-    cin >> b;
+for(int i = 0; i <5; i++){
+    cout << "Informe o nome de um aluno: ";
+    cin >> aluno;
 
-    cout << "Digite o coeficiente c: ";
-    cin >> c;
+    alunos.push_back(aluno);
 
-    delta = pow(b,2) - 4 * a * c;
+    cout << "Informe a primeira nota: ";
+    cin >> nota1[i];
 
-    if(delta > 0){
-        x1 = (-b + sqrt(delta)) / (2 * a);
-        x2 = (-b - sqrt(delta)) / (2 * a);
-        cout << "a primeira raiz: " << x1 <<endl;
-        cout << "a segunda raiz: " << x2 <<endl;
-    } else if ( delta == 0) {
-        x1 = -b / (2 * a);
-        cout << "a raiz: " << x1 <<endl;
-    } else {
-        cout << "Nao ha raiz real" << endl;
-    }
+    cout << "Informe a segunda nota: ";
+    cin >> nota2[i];
+}
 
-    return 0;
+
+for(int x = 0; x < 5; x++ ){
+    float media = (nota1[x] + nota2[x]) / 2;
+
+    cout << "Aluno " << alunos[x] << " Primeira Nota: " << nota1[x] << " Segunda Nota: " << nota2[x] << " Media: " << media << endl;
+}
+
+return 0;
 }

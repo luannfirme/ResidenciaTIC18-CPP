@@ -1,21 +1,27 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
 int main (void){
-    int a;
-    string b;
 
-    cout << "Digite um numero inteiro: ";
-    cin >> a;
+string nome;
+string sobrenome;
+string nomeCompleto;
 
-    if (a % 2 == 0)
-        b = "Par";
+cout << "Informe o nome: ";
+cin >> nome;
 
-    else
-        b = "Impar";
+cout << "Informe o sobrenome: ";
+cin >> sobrenome;
 
-    cout << "O numero informado e "<< b << endl;
+if(sobrenome.at(0) != ' ')
+ nomeCompleto = nome + " " + sobrenome;
 
-    return 0;
+else
+nomeCompleto = nome + sobrenome;
+
+cout << "Nome completo: " << nomeCompleto << endl;
+
+return 0;
 }
