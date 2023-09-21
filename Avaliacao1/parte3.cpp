@@ -534,6 +534,8 @@ struct Locacao {
                 cout << "Digite a data e hora real de retirada do veiculo: ";
                 cin >> locacao->Retirada.dia >> locacao->Retirada.mes >> locacao->Retirada.ano >> locacao->Retirada.hora >> locacao->Retirada.minuto;
 
+                locacao->Entrega.dia = 0;
+
                 char resp;
                 do {
                     cout << "A retirada ja aconteceu?" << endl;
@@ -562,12 +564,12 @@ struct Locacao {
     void mostrarLocacao(Locacao *locacao){
         cout << "Locacao " << (locacao->Realizada ? "realizada" : "nao realizada") << " - Veiculo: " << locacao->VeiculoId.PlacaDoVeiculo;
         cout << " - Cliente: " << locacao->ClienteId.Nome << " - Retirada: " << locacao->Retirada.dia << "/" << locacao->Retirada.mes << "/" << locacao->Retirada.ano << " " << locacao->Retirada.hora << ":" << locacao->Retirada.minuto;
-        if(locacao->Entrega.dia > 0 && locacao->Entrega.mes > 0 && locacao->Entrega.ano > 0)
+        if(locacao->Entrega.dia != 0)
             cout << " - Entrega: " << locacao->Entrega.dia << "/" << locacao->Entrega.mes << "/" << locacao->Entrega.ano << " " << locacao->Entrega.hora << ":" << locacao->Entrega.minuto;
     };
 
     void alterarLocacao(Locacao *locacao){
-        cout << "Digite a data e hora real de entrega do veiculo:: ";
+        cout << "Digite a data e hora real de entrega do veiculo: ";
         cin >> locacao->Entrega.dia >> locacao->Entrega.mes >> locacao->Entrega.ano >> locacao->Entrega.hora >> locacao->Entrega.minuto;
         cout << "Locacao alterada com sucesso" << endl;
     };
