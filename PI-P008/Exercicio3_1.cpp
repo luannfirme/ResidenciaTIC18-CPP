@@ -41,6 +41,8 @@ int main() {
     istringstream dataStream(novaData);
     dataStream >> dia >> delimitador >> mes >> delimitador >> ano;
 
+    cout << endl;
+
     if (!dataStream || delimitador != '/' || !ValidarData(dia, mes, ano)) {
         cout << "Data invalida." << endl;
         return 1;
@@ -52,5 +54,7 @@ int main() {
 
     cout << "Data por extenso: " << dia << " de " << ObterNomeDoMes(mes) << " de " << ano << endl;
 
+    cout << endl;
+    
     return 0;
 }
