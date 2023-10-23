@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <ctime>
+#include <vector>
+#include <bits/stdc++.h> 
 
 using namespace std;
 
@@ -19,25 +21,26 @@ void tornarPrimeiroCaractereMaiusculo(string& str) {
 }
 
 int main() {
-    srand(time(0));
+    srand(time(0)); 
 
-    string string1, string2;
+    vector<string> listaDeStrings;
 
-    gerarStringAleatoria(string1);
-    gerarStringAleatoria(string2);
+    for (int i = 0; i < 10; i++) {
+        string novaString;
+        gerarStringAleatoria(novaString);
+        tornarPrimeiroCaractereMaiusculo(novaString);
+        listaDeStrings.push_back(novaString);
+    }
 
-    tornarPrimeiroCaractereMaiusculo(string1);
-    tornarPrimeiroCaractereMaiusculo(string2);
+    sort(listaDeStrings.begin(), listaDeStrings.end());
 
     cout << endl;
-    
-    if (string1 < string2) {
-        cout << string1 << endl << string2 << endl;
-    } else {
-        cout << string2 << endl << string1 << endl;
+
+    for (const auto& str : listaDeStrings) {
+        cout << str << endl;
     }
 
     cout << endl;
-
+    
     return 0;
 }
