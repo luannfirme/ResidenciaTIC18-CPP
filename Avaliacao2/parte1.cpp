@@ -251,6 +251,7 @@ public:
             cout << "0. Sair" << endl;
             cout << "Opcao: ";
             cin >> escolha;
+            cout << endl;
 
             switch (escolha) {
                 case 1: {
@@ -288,7 +289,6 @@ public:
         } while (escolha != 0);
 
         for (Lista* l : listaDeListas) {
-            cout << endl;
             l->mostraMediana();
             l->mostraMenor();
             l->mostraMaior();
