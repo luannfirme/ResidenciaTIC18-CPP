@@ -47,6 +47,7 @@ public:
     virtual void mostraMenor() = 0;
     virtual void mostraMaior() = 0;
     virtual void listarOrdem() = 0;
+    virtual void mostrarPrimeirosNElementos() = 0;
     virtual ~Lista() {}
 
     template<typename T>
@@ -113,7 +114,7 @@ public:
         while (true) {
             getline(cin, entrada);
             transform(entrada.begin(), entrada.end(), entrada.begin(), ::tolower);
-            if (entrada == "fim") break;
+            if (entrada == "fim") return;
             istringstream ss(entrada);
             ss >> elemento;
             if (ss.fail()) {
@@ -143,6 +144,72 @@ public:
             }
         }
     }
+
+    void Opcoes() {
+            cout << "1. INCLUIR LISTA" << endl;
+            cout << "2. ENCONTRAR MENOR" << endl;
+            cout << "3. ENCONTRAR MAIOR" << endl;
+            cout << "4. ENCONTRAR MEDIANA" << endl;
+            cout << "5. ORDENAR CRESCENTE" << endl;
+            cout << "6. LISTAR OS 'N' PRIMEIROS " << endl;
+            cout << "0. VOLTAR" << endl;
+            cout << "Resposta <enter>: ";
+    }
+
+    void executarMenu(string local) {
+        int resp;
+        do {
+            cout << endl;
+            cout << "######## MENU " << local << " ########" << endl;
+            Opcoes();
+
+            if (!(cin >> resp)) {
+                cout << "Resposta invalida. Por favor, informe o numero correto." << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                continue;
+            }
+
+            switch (resp) {
+                case 1: {
+                    entradaDeDados();
+                    break;
+                }
+                case 2: {
+                    cin.ignore();
+                    mostraMenor();
+                    break;
+                }
+                case 3: {
+                    cin.ignore();
+                    mostraMaior();
+                    break;
+                }
+                case 4: {
+                    cin.ignore();
+                    mostraMediana();
+                    break;
+                }
+                case 5: {
+                    cin.ignore();
+                    listarOrdem();
+                    break;
+                }
+                case 6: {
+                    cin.ignore();
+                    mostrarPrimeirosNElementos();
+                    break;
+                }
+                case 0: {
+                    break;
+                }
+                default: {
+                    cout << "Opção inválida. Tente novamente." << endl;
+                    break;
+                }
+            }
+        } while (resp != 0);
+    }
 };
 
 class ListaNomes : public Lista {
@@ -151,20 +218,30 @@ private:
 
 public:
     void entradaDeDados() override {
+        cout << endl;
         cout << "Insercao de nomes (digite 'FIM' para terminar):" << endl;
         inserirDados(lista);
     }
 
     void mostraMediana() override {
+        cout << endl;
         cout << "A mediana da lista de nomes e: " << encontraMediana(lista) << endl;
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
     void mostraMenor() override {
+        cout << endl;
         cout << "O primeiro nome alfabeticamente e: " << encontraMenor(lista) << endl;
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
     void mostraMaior() override {
+        cout << endl;
         cout << "O ultimo nome alfabeticamente e: " << encontraMaior(lista) << endl;
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
     void listarOrdem() override {
@@ -173,6 +250,25 @@ public:
         for (const auto& elemento : lista){
             cout << elemento << endl;
         }
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
+    void mostrarPrimeirosNElementos() override {
+        int resp = 0;
+        int count = 0;
+        cout << "Informe o posicao que deseja <enter>: ";
+        cin >> resp;
+        cout << "Os primeiras " << resp << " nomes:" << endl;
+        for (const auto& data : lista) {
+            if (count >= resp) {
+                break;
+            }
+            cout << data << endl;
+            ++count;
+        }
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 };
 
@@ -182,20 +278,29 @@ private:
 
 public:
     void entradaDeDados() override {
-        cout << "Insercao de datas (digite 'FIM' para terminar):" << endl;
+        cout << endl;
         inserirData(lista);
     }
 
     void mostraMediana() override {
+        cout << endl;
         cout << "A mediana da lista de datas e: " << encontraMediana(lista).toString() << endl;
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
     void mostraMenor() override {
+        cout << endl;
         cout << "A primeira data cronologicamente e: " << encontraMenor(lista).toString() << endl;
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
     void mostraMaior() override {
+        cout << endl;
         cout << "A ultima ultima data cronologicamente e: " << encontraMaior(lista).toString() << endl;
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
     void listarOrdem() override {
@@ -204,6 +309,25 @@ public:
         for (const auto& elemento : lista){
             cout << elemento.toString() << endl;
         }
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
+    void mostrarPrimeirosNElementos() override {
+        int resp = 0;
+        int count = 0;
+        cout << "Informe o posicao que deseja <enter>: ";
+        cin >> resp;
+        cout << "Os primeiras " << resp << " datas:" << endl;
+        for (const auto& data : lista) {
+            if (count >= resp) {
+                break;
+            }
+            cout << data.toString() << endl;
+            ++count;
+        }
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 };
 
@@ -213,20 +337,30 @@ private:
 
 public:
     void entradaDeDados() override {
+        cout << endl;
         cout << "Insercao de salarios (digite 'FIM' para terminar):" << endl;
         inserirDados(lista);
     }
 
     void mostraMediana() override {
+        cout << endl;
         cout << "A mediana da lista de salarios e: " << encontraMediana(lista) << endl;
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
     void mostraMenor() override {
+        cout << endl;
         cout << "O  menor dos salarios e: " << encontraMenor(lista) << endl;
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
     void mostraMaior() override {
+        cout << endl;
         cout << "O  maior dos salarios e " << encontraMaior(lista) << endl;
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
     void listarOrdem() override {
@@ -235,7 +369,27 @@ public:
         for (const auto& elemento : lista){
             cout << elemento << endl;
         }
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }    
+
+    void mostrarPrimeirosNElementos() override {
+        int resp = 0;
+        int count = 0;
+        cout << "Informe o posicao que deseja <enter>: ";
+        cin >> resp;
+        cout << "Os primeiras " << resp << " salarios:" << endl;
+        for (const auto& data : lista) {
+            if (count >= resp) {
+                break;
+            }
+            cout << data << endl;
+            ++count;
+        }
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
+
 };
 
 class ListaIdades : public Lista {
@@ -244,20 +398,30 @@ private:
 
 public:
     void entradaDeDados() override {
+        cout << endl;
         cout << "Insercao de idades (digite 'FIM' para terminar):" << endl;
         inserirDados(lista);
     }
 
     void mostraMediana() override {
+        cout << endl;
         cout << "A mediana da lista de idades e: " << encontraMediana(lista) << endl;
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
     void mostraMenor() override {
+        cout << endl;
         cout << "A menor das idades e: " << encontraMenor(lista) << endl;
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
     void mostraMaior() override {
+        cout << endl;
         cout << "A maior das idades e: " << encontraMaior(lista) << endl;
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
     void listarOrdem() override {
@@ -266,6 +430,25 @@ public:
         for (const auto& elemento : lista){
             cout << elemento << endl;
         }
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
+    void mostrarPrimeirosNElementos() override {
+        int resp = 0;
+        int count = 0;
+        cout << "Informe o posicao que deseja <enter>: ";
+        cin >> resp;
+        cout << "Os primeiras " << resp << " idades:" << endl;
+        for (const auto& data : lista) {
+            if (count >= resp) {
+                break;
+            }
+            cout << data << endl;
+            ++count;
+        }
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 };
 
@@ -276,39 +459,41 @@ public:
         int escolha;
 
         do {
-            cout << "Escolha qual lista deseja inserir:" << endl;
-            cout << "1. Nomes" << endl;
-            cout << "2. Idades" << endl;
-            cout << "3. Salarios" << endl;
-            cout << "4. Datas" << endl;
-            cout << "0. Sair" << endl;
-            cout << "Opcao: ";
+            cout << endl;
+            cout << "######## MENU PRINCIPAL ########" << endl;
+            cout << "1. NOMES" << endl;
+            cout << "2. IDADES" << endl;
+            cout << "3. SALARIOS" << endl;
+            cout << "4. DATAS" << endl;
+            cout << "0. SAIR" << endl;
+            cout << "Resposta <enter>: ";
             cin >> escolha;
             cout << endl;
 
+            cin.ignore();
+
+            Lista* novaLista = nullptr;
+            string menu = "";
+
             switch (escolha) {
                 case 1: {
-                    ListaNomes* listaNomes = new ListaNomes();
-                    listaNomes->entradaDeDados();
-                    listaDeListas.push_back(listaNomes);
+                    novaLista = new ListaNomes();
+                    menu = "NOMES";
                     break;
                 }
                 case 2: {
-                    ListaIdades* listaIdades = new ListaIdades();
-                    listaIdades->entradaDeDados();
-                    listaDeListas.push_back(listaIdades);
+                    novaLista = new ListaIdades();
+                    menu = "IDADES";
                     break;
                 }
                 case 3: {
-                    ListaSalarios* listaSalarios = new ListaSalarios();
-                    listaSalarios->entradaDeDados();
-                    listaDeListas.push_back(listaSalarios);
+                    novaLista = new ListaSalarios();
+                    menu = "SALARIOS";
                     break;
                 }
                 case 4: {
-                    ListaDatas* listaDatas = new ListaDatas();
-                    listaDatas->entradaDeDados();
-                    listaDeListas.push_back(listaDatas);
+                    novaLista = new ListaDatas();
+                    menu = "DATAS";
                     break;
                 }
                 case 0: {
@@ -319,16 +504,13 @@ public:
                     break;
                 }
             }
-        } while (escolha != 0);
 
-        for (Lista* l : listaDeListas) {
-            l->mostraMediana();
-            l->mostraMenor();
-            l->mostraMaior();
-            l->listarOrdem();
-            delete l;
-            cout << endl;
-        }
+            if (novaLista != nullptr) {
+                novaLista->executarMenu(menu);
+            }
+        
+          } while (escolha != 0);
+
     }
 };
 
