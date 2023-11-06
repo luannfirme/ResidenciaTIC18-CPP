@@ -1,0 +1,58 @@
+body {
+    background-color: rgb(230, 194, 140);
+    align-items: center;
+}
+
+li {
+    color: rgb(0, 38, 255);
+}
+
+a {
+    cursor: pointer;
+    text-decoration:  none;
+}
+
+#local {
+    cursor: pointer;
+    padding-left: 30px;
+    text-decoration: none;
+    color: rgb(0, 119, 255);
+}
+
+form {
+    padding-left: 30px;
+}
+table{
+    border-style: groove;
+    border: 1px solid #000000;
+}
+
+ thead {
+    color: #ffffff;
+    background-color: #000000;
+ }
+
+ td {
+    padding-left: 5px;
+    padding-right: 5px;
+ }
+
+ .center {
+    text-align: center;
+ }
+
+ .bordered {
+    margin-left: 30px;
+    font-weight: bolder; 
+}
+
+input {
+    width: 250px;
+}
+
+button {
+    color: #ffffff;
+    background-color: red;
+    padding: 5px;
+    cursor: pointer;
+}
